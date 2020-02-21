@@ -1,6 +1,6 @@
 # Weathermap
 
-# HOW TO CITE
+## HOW TO CITE
 Hellmuth, Franziska, Hofer, Stefan (2019), Weathermaps from MEPS latest runs, University of Oslo, Oslo, Norway. Contact: franziska.hellmuth@geo.uio.no
 
 
