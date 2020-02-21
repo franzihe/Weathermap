@@ -1,7 +1,8 @@
-# Weathermap
+# Weathermap from MEPS latest runs
 
-Authors: Franziska Hellmuth, Stefan Hofer
-University of Oslo, Oslo, Norway
+## HOW TO CITE
+Hellmuth, Franziska, Hofer, Stefan (2019), Weathermaps from MEPS latest runs, University of Oslo, Oslo, Norway. Contact: franziska.hellmuth@geo.uio.no
+
 
 ## Necessary Python 3.7 packages
 - jupyter
