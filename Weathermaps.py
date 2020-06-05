@@ -51,25 +51,39 @@ ini_time = '09'
 savefig = 0   # 1=yes, 0=no
 form = 'png'
 
+# File direction where figures should be saved (to be changed)
 #figdir = 'sftp://franzihe@login.uio.no/uio/kant/geo-metos-u1/franzihe/www_docs'
 figdir = '/home/franzihe/Documents/Figures/Weathermaps'
-# -
 
+# +
 # Pick out area around 400km to Andenes
 # Andøya Space Center Coordinates: 69.2950N, 16.0300E
-andenes_lat = 69.2950; andenes_lon = 16.03
+# to be changed to the location of interest, define the lower left latitude and longitude,
+# upper right corner latitude and longitude
+
+#andenes_lat = 69.2950; andenes_lon = 16.03
 #lower_lat = 65.69; lower_lon = 5.8
 #upper_lat = 72.9;  upper_lon = 26.26
-lower_lat = 65.; lower_lon = 1.24
-upper_lat = 75;  upper_lon = 26.26
+#lower_lat = 65.; lower_lon = 1.24
+#upper_lat = 75;  upper_lon = 26.26
+# -
 
 # Nordmela Coordinates: 69.1358N, 15.6776E
 andenes_lat = 69.135840; andenes_lon = 15.677645
 lower_lat = 64.83; lower_lon = 0.98
 upper_lat = 74.85;  upper_lon = 25.85
 
+# +
 #  Open the netCDF file containing the input data.
-fnx = xr.open_dataset('https://thredds.met.no/thredds/dodsC/mepslatest/meps_det_2_5km_%sT%sZ.ncml' %(date, ini_time), decode_times  = True, use_cftime = True)
+# MEPS forecasts (Norway without Svalbard) from recent initialisations: https://thredds.met.no/thredds/catalog/mepslatest/catalog.html
+# AROME Arctic forecast (Arctic including Svalbard) can be found in the 
+# archive: https://thredds.met.no/thredds/catalog/aromearcticarchive/catalog.html
+# latests: https://thredds.met.no/thredds/catalog/aromearcticlatest/catalog.html
+
+#thredds = 'https://thredds.met.no/thredds/dodsC/mepslatest/meps_det_2_5km_%sT%sZ.ncml' %(date, ini_time)   # deterministic forecast
+thredds = ''
+fnx = xr.open_dataset(thredds, decode_times  = True, use_cftime = True)
+# -
 
 lower_x, lower_y = fct.find_yx(fnx.latitude, fnx.longitude, lower_lat, lower_lon)
 upper_x, upper_y = fct.find_yx(fnx.latitude, fnx.longitude, upper_lat, upper_lon)
@@ -140,7 +154,7 @@ for forecast_in_hours in range(0,39,3):
     plt.close()
 #################################################################################    
 
-
+    ### 850hP - temperature - wind
     XX, YY = np.meshgrid(fnx.x.sel(x = slice(lower_x, upper_x)), 
                          fnx.y.sel(y = slice(lower_y, upper_y)))
     fct.plt_temp_wind_850(fnx, fnx.air_temperature_pl.sel(pressure = 850.,x = slice(lower_x, upper_x),y = slice(lower_y, upper_y)).isel(time = int(forecast_in_hours)) - 273.15,
@@ -160,7 +174,7 @@ for forecast_in_hours in range(0,39,3):
     map_area = 'Norway'
 #################################################################################    
 
-
+    ### 700hP - Temp - RH
     fct.plt_700_humidity(fnx, fnx.geopotential_pl.sel(pressure = 700.,).isel(time=int(forecast_in_hours))/100, 
                      fnx.air_temperature_pl.sel(pressure = 700.,).isel(time = int(forecast_in_hours)) - 273.15, 
                      fnx.relative_humidity_pl.sel(pressure = 700.,).isel(time = int(forecast_in_hours))*100, 
