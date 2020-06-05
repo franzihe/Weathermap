@@ -14,3 +14,24 @@ Hellmuth, Franziska, Hofer, Stefan (2019), Weathermaps from MEPS latest runs, Un
 - netcdf4
 - xarray
 - cartopy
+
+
+## Weathermaps created:
+### 700hPa humidity
+Needed variables from the Met-NO files:
+- geopotential_pl
+- air_temperature_pl
+- relative_humidity_pl
+
+### Jet-Thickness-MSLP
+Needed variables from the Met-NO files:
+- x_wind_pl
+- y_wind_pl
+- air_pressure_at_sea_level
+- lwe_thickness_of_atmosphere_mass_content_of_water_vapor
+
+### 850hP-Temperature-Wind
+Needed variables from the Met-NO files:
+- air_temperature_pl
+- x_wind_pl
+- y_wind_pl
