@@ -38,6 +38,7 @@ plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams.update({'font.size': 22})
 
 # datetime object containing current date and time
+# needed if used latest 
 now = datetime.now()
 # dd/mm/YY H:M:S
 date = now.strftime("%Y%m%d")
@@ -45,7 +46,7 @@ time = now.strftime('%H')
 print("date and time =", date, time)	
 
 
-ini_time = '09'
+ini_time = '00'
 
 # +
 savefig = 0   # 1=yes, 0=no
@@ -81,7 +82,12 @@ upper_lat = 74.85;  upper_lon = 25.85
 # latests: https://thredds.met.no/thredds/catalog/aromearcticlatest/catalog.html
 
 #thredds = 'https://thredds.met.no/thredds/dodsC/mepslatest/meps_det_2_5km_%sT%sZ.ncml' %(date, ini_time)   # deterministic forecast
-thredds = ''
+year = '2019'
+month = '09'
+day = '27'
+date = year+month+day
+
+thredds = 'https://thredds.met.no/thredds/dodsC/aromearcticarchive/%s/%s/%s/arome_arctic_extracted_2_5km_%sT%sZ.nc' %(year, month, day, date, ini_time)
 fnx = xr.open_dataset(thredds, decode_times  = True, use_cftime = True)
 # -
 
