@@ -1,4 +1,10 @@
 # Weathermap from MEPS latest runs
+... can be adjusted to the archived forecasts:
+MEPS latest: https://thredds.met.no/thredds/catalog/mepslatest/catalog.html
+MEPS archive: https://thredds.met.no/thredds/catalog/meps25epsarchive/catalog.html
+
+AROME Arctic latest: https://thredds.met.no/thredds/catalog/aromearcticlatest/catalog.html
+AROME Arctic archive: https://thredds.met.no/thredds/catalog/aromearcticarchive/catalog.html
 
 ## HOW TO CITE
 Hellmuth, Franziska, Hofer, Stefan (2019), Weathermaps from MEPS latest runs, University of Oslo, Oslo, Norway. Contact: franziska.hellmuth@geo.uio.no
